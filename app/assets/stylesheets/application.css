@@ -31,3 +31,10 @@ table {
 .nav-menu li {
     display: inline;
 }
+
+footer {
+    width: 100%;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+}
