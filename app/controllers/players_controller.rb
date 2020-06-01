@@ -69,6 +69,14 @@ class PlayersController < ApplicationController
     end
   end
 
+  def logout
+    session[:player_id] = nil
+    respond_to do |format|
+      format.html { redirect_to players_url, notice: 'You have been disconnected' }
+      format.json { head :no_content }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_player

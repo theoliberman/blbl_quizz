@@ -18,6 +18,9 @@
 </nav>
 
 <% if current %>
+  <%= button_to "logout", {:controller => :players, :action => 'logout'}  do %>
+    <strong>Disconnect</strong>
+  <% end %>
   <p>You are <%= current.name %></p>
   <p>You have <%= current.points %> points</p>
 <% end %>
