@@ -1,15 +1,26 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>BlblQuizz</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>BlblQuizz</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
 
-  <body>
-    <%= yield %>
-  </body>
+<body>
+<nav>
+  <ul class="nav-menu">
+    <li><a href="/players">Players</a></li>
+    <li><a href="/questions">Questions</a></li>
+  </ul>
+</nav>
+
+<% if current %>
+  <p>You are <%= current.name %></p>
+  <p>You have <%= current.points %> points</p>
+<% end %>
+<%= yield %>
+</body>
 </html>

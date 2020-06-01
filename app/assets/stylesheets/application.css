@@ -17,3 +17,17 @@
 * {
     text-align: center;
 }
+
+table {
+    margin: 0 auto;
+}
+
+.nav-menu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-menu li {
+    display: inline;
+}
