@@ -1,29 +1,19 @@
-<style>
-  .row {
-    display: flex;
-    height: 100px;
-    width: 50%;
-    margin: 0 auto;
-  }
+<div class="question">
+  <fieldset>
+    <legend align="center">QUESTION</legend>
+    <%= @question.body %>
+  </fieldset>
+</div>
 
-  /* Create two equal columns that sits next to each other */
-  .column {
-    flex: 50%;
-    padding: 10px;
-  }
-</style>
 
-<p id="notice"><%= notice %></p>
-
-<h1 style="margin-bottom: 100px">
-  <%= @question.body %>
-</h1>
 
 <div class="row">
   <div class="column">
     <%= button_to "#{@question.id}/check/a", {:controller => :questions, :action => 'check', :remote => true}  do %>
-      <strong>A:</strong>
-      <%= @question.a %>
+      <div>
+        <strong>A:</strong>
+        <%= @question.a %>
+      </div>
     <% end %>
   </div>
   <div class="column">

@@ -9,27 +9,32 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
 
-<body>
-<nav>
-  <ul class="nav-menu">
-    <li><a href="/">Home</a></li>
-    <li><a href="/players">Players</a></li>
-    <li><a href="/questions">Questions</a></li>
-  </ul>
-</nav>
+<div>
+  <nav>
+    <ul class="nav-menu">
+      <li><a href="/">Home</a></li>
+      <li><a href="/players">Players</a></li>
+      <li><a href="/questions">Questions</a></li>
+    </ul>
+  </nav>
 
-<% if current %>
-  <%= button_to "logout", {:controller => :players, :action => 'logout'}  do %>
-    <strong>Disconnect</strong>
-  <% end %>
-  <p>You are <%= current.name %></p>
-  <p>You have <%= current.points %> points</p>
-<% end %>
-<%= yield %>
+  <p id="notice"><%= notice %></p>
 
-<footer>
-  made with ♥ for BlblTV by Théo Liberman
-</footer>
+  <div class="current">
+    <% if current %>
+      <%= button_to "logout", {:controller => :players, :action => 'logout'} do %>
+        <strong>Disconnect</strong>
+      <% end %>
+      <p>You are <%= current.name %></p>
+      <p>You have <%= current.points %> points</p>
+    <% end %>
+  </div>
 
-</body>
+  <%= yield %>
+
+  <footer>
+    made with ♥ for BlblTV by Théo Liberman
+  </footer>
+
+  </body>
 </html>
