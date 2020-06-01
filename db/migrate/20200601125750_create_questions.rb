@@ -6,7 +6,7 @@ class CreateQuestions < ActiveRecord::Migration[5.2]
       t.string :b
       t.string :c
       t.string :d
-      t.integer :awnser
+      t.integer :answer
       t.integer :rank
 
       t.timestamps

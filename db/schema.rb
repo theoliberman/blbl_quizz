@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 2020_06_01_125750) do
     t.string "b"
     t.string "c"
     t.string "d"
-    t.integer "awnser"
+    t.integer "answer"
     t.integer "rank"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

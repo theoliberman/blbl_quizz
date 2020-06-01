@@ -7,4 +7,4 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-Question.create!(body: "What is love ?", a: "baby", b: "dont", c: "hurt", d: "me", awnser: "d", rank: 0)
+Question.create!(body: "What is love ?", a: "baby", b: "dont", c: "hurt", d: "me", answer: "d", rank: 0)

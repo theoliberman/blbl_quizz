@@ -62,7 +62,7 @@ class QuestionsController < ApplicationController
   end
 
   def check
-    @result = @question.awnser == params[:awnser]
+    @result = @question.answer == params[:answer]
     respond_to do |format|
       format.js {}
     end
@@ -76,6 +76,6 @@ class QuestionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def question_params
-      params.require(:question).permit(:body, :a, :b, :c, :d, :awnser, :rank)
+      params.require(:question).permit(:body, :a, :b, :c, :d, :answer, :rank)
     end
 end
