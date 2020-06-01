@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  body: MyText
+  a: MyString
+  b: MyString
+  c: MyString
+  d: MyString
+  awnser: 1
+  rank: 1
+
+two:
+  body: MyText
+  a: MyString
+  b: MyString
+  c: MyString
+  d: MyString
+  awnser: 1
+  rank: 1
