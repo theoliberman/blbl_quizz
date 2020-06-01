@@ -10,10 +10,8 @@
 <div class="row">
   <div class="column">
     <%= button_to "#{@question.id}/check/a", {:controller => :questions, :action => 'check', :remote => true}  do %>
-      <div>
         <strong>A:</strong>
         <%= @question.a %>
-      </div>
     <% end %>
   </div>
   <div class="column">
