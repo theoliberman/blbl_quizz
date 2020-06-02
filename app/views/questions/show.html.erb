@@ -122,12 +122,16 @@
             document.getElementById("progressbar").style.width = i + 1 + "%";
         } else {
             clearTimeout(timer);
-            setInterval(function(){
-                pending = false;
-                $(() => $.ajax({
-                    type: "POST",
-                    url: "/questions/<%= @question.id %>/check/"+selected
-                }));
+            const check = setInterval(function(){
+                if (pending) {
+                    pending = false;
+                    $(() => $.ajax({
+                        type: "POST",
+                        url: "/questions/<%= @question.id %>/check/"+selected
+                    }));
+                } else {
+                    clearTimeout(check)
+                }
             },1000);
         }
 
@@ -135,7 +139,7 @@
 
     function select(x) {
         if (pending) {
-            const cards = document.getElementsByClassName("answer")
+            let cards = document.getElementsByClassName("answer")
             for (let i = 0; i < cards.length; i++) {
                 cards.item(i).classList.remove("bg-warning");
             }

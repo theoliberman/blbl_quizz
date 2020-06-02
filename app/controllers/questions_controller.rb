@@ -65,6 +65,8 @@ class QuestionsController < ApplicationController
 
   def check
     @answer = params[:answer] || ''
+    points = current.points
+    current.update(points: points + 10) if @answer == @question.answer
     respond_to do |format|
       format.js {}
     end

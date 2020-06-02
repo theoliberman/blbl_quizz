@@ -1,4 +1,4 @@
-const cards = document.getElementsByClassName("answer")
+cards = document.getElementsByClassName("answer")
 for (let i = 0; i < cards.length; i++) {
     cards.item(i).classList.remove("bg-warning", "bg-danger", "bg-success");
 }
@@ -16,3 +16,5 @@ for (let i = 0; i < cards.length; i++) {
 (<%= @question.answer %>).classList.remove("bg-danger");
 (<%= @question.answer %>).classList.add("bg-success");
 <% end %>
+
+document.getElementById("points").innerText = (<%= current.points %>) + " points"
