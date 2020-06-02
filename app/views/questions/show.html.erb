@@ -20,39 +20,35 @@
 
   <div class="col-md-3">
 
-    <%= link_to check_path(id: @question.id, answer: 'a'), method: :post, remote: true, class: "answer" do %>
-      <div class="card" id="a">
-        <div class="row no-gutters">
-          <div class="col-md-2">
-            <strong>A</strong>
-          </div>
-          <div class="col-md-10">
-            <div class="card-body">
-              <p class="card-text">
-                <%= @question.a %>
-              </p>
-            </div>
+    <div class="card answer" id="a" onclick="select('a')">
+      <div class="row no-gutters">
+        <div class="col-md-2">
+          <strong>A</strong>
+        </div>
+        <div class="col-md-10">
+          <div class="card-body">
+            <p class="card-text">
+              <%= @question.a %>
+            </p>
           </div>
         </div>
       </div>
-    <% end %>
+    </div>
 
-    <%= link_to check_path(id: @question.id, answer: 'c'), method: :post, remote: true, class: "answer" do %>
-      <div class="card" id="c">
-        <div class="row no-gutters">
-          <div class="col-md-2">
-            <strong>C</strong>
-          </div>
-          <div class="col-md-10">
-            <div class="card-body">
-              <p class="card-text">
-                <%= @question.c %>
-              </p>
-            </div>
+    <div class="card answer" id="c" onclick="select('c')">
+      <div class="row no-gutters">
+        <div class="col-md-2">
+          <strong>C</strong>
+        </div>
+        <div class="col-md-10">
+          <div class="card-body">
+            <p class="card-text">
+              <%= @question.c %>
+            </p>
           </div>
         </div>
       </div>
-    <% end %>
+    </div>
 
   </div>
 
@@ -60,39 +56,35 @@
 
   <div class="col-md-3">
 
-    <%= link_to check_path(id: @question.id, answer: 'b'), method: :post, remote: true, class: "answer" do %>
-      <div class="card" id="b">
-        <div class="row no-gutters">
-          <div class="col-md-2">
-            <strong>B</strong>
-          </div>
-          <div class="col-md-10">
-            <div class="card-body">
-              <p class="card-text">
-                <%= @question.b %>
-              </p>
-            </div>
+    <div class="card answer" id="b" onclick="select('b')">
+      <div class="row no-gutters">
+        <div class="col-md-2">
+          <strong>B</strong>
+        </div>
+        <div class="col-md-10">
+          <div class="card-body">
+            <p class="card-text">
+              <%= @question.b %>
+            </p>
           </div>
         </div>
       </div>
-    <% end %>
+    </div>
 
-    <%= link_to check_path(id: @question.id, answer: 'd'), method: :post, remote: true, class: "answer" do %>
-      <div class="card" id="d">
-        <div class="row no-gutters">
-          <div class="col-md-2">
-            <strong>D</strong>
-          </div>
-          <div class="col-md-10">
-            <div class="card-body">
-              <p class="card-text">
-                <%= @question.d %>
-              </p>
-            </div>
+    <div class="card answer" id="d" onclick="select('d')">
+      <div class="row no-gutters">
+        <div class="col-md-2">
+          <strong>D</strong>
+        </div>
+        <div class="col-md-10">
+          <div class="card-body">
+            <p class="card-text">
+              <%= @question.d %>
+            </p>
           </div>
         </div>
       </div>
-    <% end %>
+    </div>
 
   </div>
 
@@ -120,6 +112,8 @@
 
 
 <script>
+    let selected = "";
+    let pending = true;
     let i = 0;
 
     const timer = setInterval(function () {
@@ -128,7 +122,23 @@
             document.getElementById("progressbar").style.width = i + 1 + "%";
         } else {
             clearTimeout(timer);
+            pending = false;
+            $(() => $.ajax({
+                type: "POST",
+                url: "/questions/<%= @question.id %>/check/"+selected
+            }));
         }
 
     }, 100);
+
+    function select(x) {
+        if (pending) {
+            const cards = document.getElementsByClassName("answer")
+            for (let i = 0; i < cards.length; i++) {
+                cards.item(i).classList.remove("bg-warning");
+            }
+            document.getElementById(x).classList.add("bg-warning")
+            selected = x
+        }
+    }
 </script>

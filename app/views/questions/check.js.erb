@@ -1,10 +1,18 @@
-for (const id in {a: "a", b: "b", c: "c", d: "d"}) {
-    document.getElementById(id).classList.remove("bg-danger");
-    document.getElementById(id).classList.remove("bg-success");
+const cards = document.getElementsByClassName("answer")
+for (let i = 0; i < cards.length; i++) {
+    cards.item(i).classList.remove("bg-warning", "bg-danger", "bg-success");
 }
 
 <% if @answer == @question.answer %>
 (<%= @answer %>).classList.add("bg-success");
 <% else %>
+<% if @answer != '' %>
 (<%= @answer %>).classList.add("bg-danger");
+<% else %>
+for (let i = 0; i < cards.length; i++) {
+    cards.item(i).classList.add("bg-danger");
+}
+<% end %>
+(<%= @question.answer %>).classList.remove("bg-danger");
+(<%= @question.answer %>).classList.add("bg-success");
 <% end %>
