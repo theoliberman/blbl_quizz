@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   root to: 'welcome#index'
 
-  post 'questions/:id/check/:answer', to: 'questions#check'
+  post 'questions/:id/check/:answer', to: 'questions#check', as: 'check'
 
   post 'players/:id', to: 'players#select'
 

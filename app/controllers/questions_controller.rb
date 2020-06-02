@@ -62,7 +62,7 @@ class QuestionsController < ApplicationController
   end
 
   def check
-    @result = @question.answer == params[:answer]
+    @answer = params[:answer]
     respond_to do |format|
       format.js {}
     end
@@ -70,12 +70,12 @@ class QuestionsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_question
-      @question = Question.find(params[:id])
-    end
+  def set_question
+    @question = Question.find(params[:id])
+  end
 
     # Only allow a list of trusted parameters through.
-    def question_params
-      params.require(:question).permit(:body, :a, :b, :c, :d, :answer, :rank)
-    end
+  def question_params
+    params.require(:question).permit(:body, :a, :b, :c, :d, :answer, :rank)
+  end
 end

@@ -1,5 +1,10 @@
-<% if @result %>
-  alert("Correct");
+for (const id in {a: "a", b: "b", c: "c", d: "d"}) {
+    document.getElementById(id).classList.remove("bg-danger");
+    document.getElementById(id).classList.remove("bg-success");
+}
+
+<% if @answer == @question.answer %>
+(<%= @answer %>).classList.add("bg-success");
 <% else %>
-  alert("Error\nCorrect is <%= @question.answer.upcase %>");
+(<%= @answer %>).classList.add("bg-danger");
 <% end %>

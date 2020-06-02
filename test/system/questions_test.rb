@@ -15,7 +15,7 @@ class QuestionsTest < ApplicationSystemTestCase
     click_on "New Question"
 
     fill_in "A", with: @question.a
-    fill_in "Awnser", with: @question.answer
+    fill_in "Answer", with: @question.answer
     fill_in "B", with: @question.b
     fill_in "Body", with: @question.body
     fill_in "C", with: @question.c
@@ -32,7 +32,7 @@ class QuestionsTest < ApplicationSystemTestCase
     click_on "Edit", match: :first
 
     fill_in "A", with: @question.a
-    fill_in "Awnser", with: @question.answer
+    fill_in "Answer", with: @question.answer
     fill_in "B", with: @question.b
     fill_in "Body", with: @question.body
     fill_in "C", with: @question.c

@@ -1,0 +1,83 @@
+$primary: #FFFFFF;
+
+@import 'bootstrap';
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
+
+@font-face {
+  font-family: 'Harry Potter Regular';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Harry Potter Regular'), url('HARRP___.woff') format('woff');
+}
+
+body {
+  background: #03010d;
+  background: -moz-linear-gradient(top, #03010d 0%, #02010e 100%);
+  background: -webkit-linear-gradient(top, #03010d 0%, #02010e 100%);
+  background: linear-gradient(to bottom, #03010d 0%, #02010e 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#03010d', endColorstr='#02010e', GradientType=0);
+  color: $primary;
+  font-family: "Harry Potter Regular", serif;
+}
+
+footer {
+  width: 100%;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+}
+
+header {
+  margin-bottom: 50px;
+}
+
+.answer, .answer:hover, .answer:visited {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+
+  .card {
+    border-radius: 0;
+    border: 2px solid gold;
+    margin-bottom: 3rem;
+    background: #03010d;
+    padding-top: 10px;
+  }
+
+  strong {
+    font-size: 3rem;
+    margin-left: 10px;
+    margin-top: 5px;
+    color: gold;
+  }
+
+  p {
+    text-align: center;
+  }
+}
+
+.question {
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+.question {
+  fieldset {
+    border: 2px solid gold;
+  }
+  legend {
+    display: block;
+    margin: auto;
+    width: auto;
+    color: gold;
+    font-weight: bold;
+  }
+  p {
+    margin: 25px;
+  }
+}
+
+.nav-item {
+  border-bottom: 1px solid #dee2e6;
+}

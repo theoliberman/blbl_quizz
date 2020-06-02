@@ -1,42 +1,100 @@
-<div class="question">
-  <fieldset>
-    <legend align="center">QUESTION</legend>
-    <%= @question.body %>
-  </fieldset>
-</div>
-
-
-
 <div class="row">
-  <div class="column">
-    <%= button_to "#{@question.id}/check/a", {:controller => :questions, :action => 'check', :remote => true}  do %>
-        <strong>A:</strong>
-        <%= @question.a %>
-    <% end %>
+  <div class="col-md-3">
   </div>
-  <div class="column">
-    <%= button_to "#{@question.id}/check/b", {:controller => :questions, :action => 'check', :remote => true}  do %>
-      <strong>B:</strong>
-      <%= @question.b %>
-    <% end %>
+  <div class="col-md-6 question">
+    <div class="question">
+      <fieldset>
+        <legend>QUESTION</legend>
+        <p>
+          <%= @question.body %>
+        </p>
+      </fieldset>
+    </div>
+  </div>
+  <div class="col-md-3">
   </div>
 </div>
 
 <div class="row">
-  <div class="column">
-    <%= button_to "#{@question.id}/check/c", {:controller => :questions, :action => 'check', :remote => true}  do %>
-      <strong>C:</strong>
-      <%= @question.c %>
-    <% end %>
-  </div>
-  <div class="column">
-    <%= button_to "#{@question.id}/check/d", {:controller => :questions, :action => 'check', :remote => true}  do %>
-      <strong>D:</strong>
-      <%= @question.d %>
-    <% end %>
-  </div>
-</div>
+  <div class="col-md-2"></div>
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-<%= link_to 'Edit', edit_question_path(@question) %> |
-<%= link_to 'Back', questions_path %>
+  <div class="col-md-3">
+
+    <%= link_to check_path(id: @question.id, answer: 'a'), method: :post, remote: true, class: "answer" do %>
+      <div class="card" id="a">
+        <div class="row no-gutters">
+          <div class="col-md-2">
+            <strong>A</strong>
+          </div>
+          <div class="col-md-10">
+            <div class="card-body">
+              <p class="card-text">
+                <%= @question.a %>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+    <%= link_to check_path(id: @question.id, answer: 'c'), method: :post, remote: true, class: "answer" do %>
+      <div class="card" id="c">
+        <div class="row no-gutters">
+          <div class="col-md-2">
+            <strong>C</strong>
+          </div>
+          <div class="col-md-10">
+            <div class="card-body">
+              <p class="card-text">
+                <%= @question.c %>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+  </div>
+
+  <div class="col-md-2"></div>
+
+  <div class="col-md-3">
+
+    <%= link_to check_path(id: @question.id, answer: 'b'), method: :post, remote: true, class: "answer" do %>
+      <div class="card"  id="b">
+        <div class="row no-gutters">
+          <div class="col-md-2">
+            <strong>B</strong>
+          </div>
+          <div class="col-md-10">
+            <div class="card-body">
+              <p class="card-text">
+                <%= @question.b %>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+    <%= link_to check_path(id: @question.id, answer: 'd'), method: :post, remote: true, class: "answer" do %>
+      <div class="card"  id="d">
+        <div class="row no-gutters">
+          <div class="col-md-2">
+            <strong>D</strong>
+          </div>
+          <div class="col-md-10">
+            <div class="card-body">
+              <p class="card-text">
+                <%= @question.d %>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+  </div>
+
+  <div class="col-md-2"></div>
+</div>
