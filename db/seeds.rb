@@ -9,5 +9,5 @@
 
 Question.create!(body: "What is love ?", a: "baby", b: "dont", c: "hurt", d: "me", answer: "d", rank: 0)
 
-Player.create!(name: "toto")
-Player.create!(name: "tata")
+Player.create!(name: "Toto")
+Player.create!(name: "Tata")
