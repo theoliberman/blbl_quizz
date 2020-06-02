@@ -1,5 +1,4 @@
 class QuestionsController < ApplicationController
-  skip_forgery_protection
   before_action :select_player!
   before_action :set_question, only: [:show, :edit, :update, :destroy, :check]
 

@@ -1,0 +1,7 @@
+password = prompt("Password", "");
+
+$(() => $.ajax({
+    type: "POST",
+    url: "authenticate",
+    data: {password: password, id: <%= @player.id %>}
+}));

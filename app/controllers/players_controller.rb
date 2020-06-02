@@ -1,5 +1,5 @@
 class PlayersController < ApplicationController
-  before_action :set_player, only: [:show, :edit, :update, :destroy, :select]
+  before_action :set_player, only: [:show, :edit, :update, :destroy, :select, :authenticate]
 
   # GET /players
   # GET /players.json
@@ -62,10 +62,16 @@ class PlayersController < ApplicationController
   end
 
   def select
-    session[:player_id] = @player.id
-    respond_to do |format|
-      format.html { redirect_to players_url, notice: "You have selected #{@player.name}" }
-      format.json { head :no_content }
+    if @player.is_admin
+      respond_to do |format|
+        format.js {}
+      end
+    else
+      session[:player_id] = @player.id
+      respond_to do |format|
+        format.html { redirect_to players_url, notice: "You have selected #{@player.name}" }
+        format.json { head :no_content }
+      end
     end
   end
 
@@ -77,14 +83,24 @@ class PlayersController < ApplicationController
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_player
-      @player = Player.find(params[:id])
+  def authenticate
+    session[:player_id] = params[:password] == 'password' ? @player.id : nil
+    notice = params[:password] == 'password' ? "You have selected #{@player.name}" : 'Authenticate error'
+    respond_to do |format|
+      format.html { redirect_to players_url, notice: notice }
+      format.json { head :no_content }
     end
+  end
 
-    # Only allow a list of trusted parameters through.
-    def player_params
-      params.require(:player).permit(:name, :points)
-    end
+  private
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_player
+    @player = Player.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def player_params
+    params.require(:player).permit(:name, :points)
+  end
 end
