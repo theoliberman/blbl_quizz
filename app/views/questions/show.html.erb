@@ -122,11 +122,13 @@
             document.getElementById("progressbar").style.width = i + 1 + "%";
         } else {
             clearTimeout(timer);
-            pending = false;
-            $(() => $.ajax({
-                type: "POST",
-                url: "/questions/<%= @question.id %>/check/"+selected
-            }));
+            setInterval(function(){
+                pending = false;
+                $(() => $.ajax({
+                    type: "POST",
+                    url: "/questions/<%= @question.id %>/check/"+selected
+                }));
+            },1000);
         }
 
     }, 100);
