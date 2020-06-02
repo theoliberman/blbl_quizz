@@ -61,7 +61,7 @@
   <div class="col-md-3">
 
     <%= link_to check_path(id: @question.id, answer: 'b'), method: :post, remote: true, class: "answer" do %>
-      <div class="card"  id="b">
+      <div class="card" id="b">
         <div class="row no-gutters">
           <div class="col-md-2">
             <strong>B</strong>
@@ -78,7 +78,7 @@
     <% end %>
 
     <%= link_to check_path(id: @question.id, answer: 'd'), method: :post, remote: true, class: "answer" do %>
-      <div class="card"  id="d">
+      <div class="card" id="d">
         <div class="row no-gutters">
           <div class="col-md-2">
             <strong>D</strong>
@@ -97,4 +97,38 @@
   </div>
 
   <div class="col-md-2"></div>
+
 </div>
+
+<div class="row progressbar">
+  <div class="col-md-12">
+    <div class="row">
+      <div class="col-md-3">
+      </div>
+      <div class="col-md-6">
+        <div class="progress">
+          <div id="progressbar" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="20" style="width: 0"></div>
+        </div>
+      </div>
+      <div class="col-md-3">
+      </div>
+    </div>
+  </div>
+</div>
+
+<p id="duration"></p>
+
+
+<script>
+    let i = 0;
+
+    const timer = setInterval(function () {
+        i += 0.5;
+        if (i <= 100) {
+            document.getElementById("progressbar").style.width = i + 1 + "%";
+        } else {
+            clearTimeout(timer);
+        }
+
+    }, 100);
+</script>

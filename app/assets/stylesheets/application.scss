@@ -1,5 +1,3 @@
-$primary: #FFFFFF;
-
 @import 'bootstrap';
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
@@ -17,7 +15,7 @@ body {
   background: -webkit-linear-gradient(top, #03010d 0%, #02010e 100%);
   background: linear-gradient(to bottom, #03010d 0%, #02010e 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#03010d', endColorstr='#02010e', GradientType=0);
-  color: $primary;
+  color: white;
   font-family: "Harry Potter Regular", serif;
 }
 
