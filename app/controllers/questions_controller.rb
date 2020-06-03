@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
   before_action :select_player!
-  before_action :set_question, only: [:show, :edit, :update, :destroy, :check]
+  before_action :set_question, only: %i[show edit update destroy check]
 
   # GET /questions
   # GET /questions.json
@@ -10,8 +10,7 @@ class QuestionsController < ApplicationController
 
   # GET /questions/1
   # GET /questions/1.json
-  def show
-  end
+  def show; end
 
   # GET /questions/new
   def new
@@ -19,8 +18,7 @@ class QuestionsController < ApplicationController
   end
 
   # GET /questions/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /questions
   # POST /questions.json
@@ -72,12 +70,13 @@ class QuestionsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+
+  # Use callbacks to share common setup or constraints between actions.
   def set_question
     @question = Question.find(params[:id])
   end
 
-    # Only allow a list of trusted parameters through.
+  # Only allow a list of trusted parameters through.
   def question_params
     params.require(:question).permit(:body, :a, :b, :c, :d, :answer, :rank)
   end

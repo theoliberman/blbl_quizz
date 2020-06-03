@@ -12,5 +12,4 @@ Rails.application.routes.draw do
   post 'logout', to: 'players#logout'
 
   post 'authenticate', to: 'players#authenticate'
-
 end

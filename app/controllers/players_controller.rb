@@ -1,5 +1,5 @@
 class PlayersController < ApplicationController
-  before_action :set_player, only: [:show, :edit, :update, :destroy, :select, :authenticate]
+  before_action :set_player, only: %i[show edit update destroy select authenticate]
 
   # GET /players
   # GET /players.json
@@ -9,8 +9,7 @@ class PlayersController < ApplicationController
 
   # GET /players/1
   # GET /players/1.json
-  def show
-  end
+  def show; end
 
   # GET /players/new
   def new
@@ -18,8 +17,7 @@ class PlayersController < ApplicationController
   end
 
   # GET /players/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /players
   # POST /players.json
