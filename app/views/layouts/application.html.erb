@@ -12,33 +12,40 @@
 <body>
 
 <header>
-  <nav class="navbar navbar-expand-md navbar-fixed-top navbar-dark bg-dark main-nav">
-    <ul class="nav navbar-nav">
-      <li class="nav-item">
-        <%= link_to "Home", root_path, class: "nav-link " + (current_page?(root_path) ? "active" : "") %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "Players", players_path, class: "nav-link " + (current_page?(players_path) ? "active" : "") %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "Questions", questions_path, class: "nav-link " + (current_page?(questions_path) ? "active" : "") %>
-      </li>
-    </ul>
-    <% if current %>
-      <ul class="nav navbar-nav mx-auto">
-        <li class="nav-item"><a class="nav-link" href="#" id="points"><%= current.points %> points</a></li>
-      </ul>
-      <ul class="nav navbar-nav">
-        <li class="nav-item dropdown ml-md-auto">
-          <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown">
-              <%= current.name %>
-          </a>
-          <div class="dropdown-menu dropdown-menu-right bg-dark" aria-labelledby="navbarDropdownMenuLink">
-            <%= link_to "Quitter", {:controller => :players, :action => 'logout'}, method: 'post', class: "dropdown-item bg-dark" %>
-          </div>
+  <nav class="navbar navbar-expand-sm navbar-dark bg-primary justify-content-center align-items-start navbar-dark bg-dark">
+    <button class="navbar-toggler mr-auto" type="button" data-toggle="collapse" data-target="#navbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <span class="navbar-brand position-absolute" id="points">
+      <% if current %>
+        <%= current.points %> points
+      <% end %>
+    </span>
+    <div class="navbar-collapse collapse" id="navbar">
+      <ul class="navbar-nav justify-content-center">
+        <li class="nav-item">
+          <%= link_to "Jouer", root_path, class: "nav-link " + (current_page?(root_path) ? "active" : "") %>
         </li>
       </ul>
-    <% end %>
+    </div>
+    <div class="navbar-collapse collapse" id="navbar">
+      <ul class="navbar-nav justify-content-center ml-auto">
+        <% if current %>
+          <li class="nav-item dropdown ml-md-auto">
+            <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown">
+              <%= current.name %>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right bg-dark" aria-labelledby="navbarDropdownMenuLink">
+              <%= link_to "Quitter", {:controller => :players, :action => 'logout'}, method: 'post', class: "dropdown-item bg-dark" %>
+            </div>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to "Choisir Joueur", players_path, class: "nav-link " + (current_page?(players_path) ? "active" : "") %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
   </nav>
 </header>
 

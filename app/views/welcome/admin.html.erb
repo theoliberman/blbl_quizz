@@ -1,12 +1,5 @@
 <h1>Bienvenue <%= current.name %></h1>
-<h2>Vous etes administrateur !</h2>
 
 <h3><%= @rank %></h3>
 
-<% if @rank != 0 %>
-  <%= button_to "RESET", "/reset", {:controller => :welcome, :action => 'reset'} %>
-<% end %>
 
-<% if @rank < @max %>
-  <%= button_to "NEXT", "/next", {:controller => :welcome, :action => 'next'} %>
-<% end %>

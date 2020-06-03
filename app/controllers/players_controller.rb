@@ -67,7 +67,7 @@ class PlayersController < ApplicationController
     else
       session[:player_id] = @player.id
       respond_to do |format|
-        format.html { redirect_to players_url, notice: "You have selected #{@player.name}" }
+        format.html { redirect_to root_url, notice: "You have selected #{@player.name}" }
         format.json { head :no_content }
       end
     end
@@ -85,7 +85,7 @@ class PlayersController < ApplicationController
     session[:player_id] = params[:password] == 'password' ? @player.id : nil
     notice = params[:password] == 'password' ? "You have selected #{@player.name}" : 'Authenticate error'
     respond_to do |format|
-      format.html { redirect_to players_url, notice: notice }
+      format.html { redirect_to root_url, notice: notice }
       format.json { head :no_content }
     end
   end

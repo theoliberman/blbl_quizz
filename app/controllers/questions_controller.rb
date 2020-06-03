@@ -10,7 +10,10 @@ class QuestionsController < ApplicationController
 
   # GET /questions/1
   # GET /questions/1.json
-  def show; end
+  def show
+    @rank = State.first.rank
+    @max = Question.maximum('rank')
+  end
 
   # GET /questions/new
   def new

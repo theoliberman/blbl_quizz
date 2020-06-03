@@ -1,20 +1,17 @@
 class WelcomeController < ApplicationController
-  before_action :select_player!, only: [:next, :reset]
+  before_action :select_player!, only: %i[next reset]
 
   def index
     @rank = State.first.rank
     @max = Question.maximum('rank')
-    if current&.is_admin
-      render 'admin'
-    else
-      render 'index'
-    end
+    redirect_to players_path, notice: 'Choose a player' unless current
   end
 
   def next
-    rank = State.first.rank
-    State.first.update(rank: rank + 1)
-    redirect_to root_path
+    state = State.first
+    state.update(rank: state.rank + 1)
+    question = Question.find_by(rank: state.rank)
+    redirect_to question
   end
 
   def reset

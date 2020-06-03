@@ -1,4 +1,19 @@
-<h1>Bienvenue <%= current&.name %></h1>
+<div id="light"></div>
+<div id="dumbledore">
+  <p class="quote" id="part1">Happiness can be found, even in the darkest of times, </p>
+  <p class="quote" id="part2">if one only remembers </p>
+  <p class="quote" id="part3">to turn on the light</p>
+</div>
+
+<% if current&.is_admin %>
+  <% if @rank != 0 %>
+    <%= button_to "RESET", "/reset", {:controller => :welcome, :action => 'reset'} %>
+  <% end %>
+
+  <% if @rank < @max %>
+    <%= button_to "NEXT", "/next", {:controller => :welcome, :action => 'next'} %>
+  <% end %>
+<% end %>
 
 <script>
     updateRank = setInterval(function () {
@@ -6,15 +21,24 @@
             type: "GET",
             url: "/rank",
             success: function (data) {
-                if (data !== <%= @rank %>) {
+                console.log(data);
+                if (data !== 0) {
                     clearTimeout(updateRank)
-                    if (data !== 0) {
-                        window.location.replace("/questions/" + data);
-                    } else {
-                        window.location.replace("/");
-                    }
+                    window.location.replace("/questions/" + data);
                 }
             }
         }));
     }, 1000);
+
+    let wand = document.getElementById("light");
+    let quote = document.getElementById("dumbledore");
+    setInterval(function () {
+        wand.classList.add("lumos");
+        quote.classList.add("faded");
+        setTimeout(() => {
+            wand.classList.remove("lumos")
+            quote.classList.remove("faded");
+        }, 5000);
+    }, 8000)
+
 </script>
