@@ -3,7 +3,7 @@ class WelcomeController < ApplicationController
 
   def index
     @rank = State.first.rank
-    @max = Question.all.count
+    @max = Question.maximum('rank')
     if current&.is_admin
       render 'admin'
     else
