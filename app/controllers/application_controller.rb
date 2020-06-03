@@ -2,9 +2,14 @@ class ApplicationController < ActionController::Base
   skip_forgery_protection
 
   helper_method :current
+  helper_method :admin
 
   def current
-    Player.find_by(id: session[:player_id])
+    Player.unscoped.find_by(id: session[:player_id])
+  end
+
+  def admin
+    Player.unscoped.where(is_admin: true).first
   end
 
   protected

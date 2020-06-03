@@ -83,7 +83,6 @@ class PlayersController < ApplicationController
 
   def authenticate
     session[:player_id] = params[:password] == 'password' ? @player.id : nil
-    notice = params[:password] == 'password' ? "You have selected #{@player.name}" : 'Authenticate error'
     respond_to do |format|
       format.html { redirect_to root_url, notice: notice }
       format.json { head :no_content }
@@ -94,7 +93,7 @@ class PlayersController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_player
-    @player = Player.find(params[:id])
+    @player = Player.unscoped.find(params[:id])
   end
 
   # Only allow a list of trusted parameters through.

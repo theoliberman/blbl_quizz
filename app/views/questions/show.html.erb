@@ -111,6 +111,20 @@
 <p id="duration"></p>
 
 <% if current&.is_admin %>
+
+  <table>
+    <tbody>
+    <% @players.each do |player| %>
+      <tr>
+        <td><%= player.name %></td>
+<!--        <td><%#= player.answer(@question) %></td>-->
+        <td><%= player.points %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+
   <% if @rank != 0 %>
     <%= button_to "RESET", "/reset", {:controller => :welcome, :action => 'reset'} %>
   <% end %>

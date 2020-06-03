@@ -13,6 +13,7 @@ class QuestionsController < ApplicationController
   def show
     @rank = State.first.rank
     @max = Question.maximum('rank')
+    @players = Player.all
   end
 
   # GET /questions/new
