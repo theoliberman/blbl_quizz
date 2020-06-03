@@ -1,6 +1,12 @@
 cards = document.getElementsByClassName("answer")
+scores = document.getElementsByClassName("score");
+
 for (let i = 0; i < cards.length; i++) {
     cards.item(i).classList.remove("bg-warning", "bg-danger", "bg-success");
+}
+
+for (let i = 0; i < scores.length; i++) {
+    scores.item(i).classList.remove("bg-warning", "bg-danger", "bg-success");
 }
 
 <% if @answer == @question.answer %>
@@ -18,3 +24,13 @@ for (let i = 0; i < cards.length; i++) {
 <% end %>
 
 document.getElementById("points").innerText = (<%= current.points %>) + " points"
+
+<% if current&.is_admin %>
+for (let i = 0; i < scores.length; i++) {
+    if ('<%= @question.answer %>'.toUpperCase() === scores.item(i).cells.item(2).innerText) {
+        scores.item(i).classList.add("bg-success");
+    } else {
+        scores.item(i).classList.add("bg-danger");
+    }
+}
+<% end %>

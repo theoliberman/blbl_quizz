@@ -111,27 +111,48 @@
 <p id="duration"></p>
 
 <% if current&.is_admin %>
+  <div class="container">
 
-  <table>
-    <tbody>
-    <% @players.each do |player| %>
+    <table class="table table-dark">
+      <thead>
       <tr>
-        <td><%= player.name %></td>
-<!--        <td><%#= player.answer(@question) %></td>-->
-        <td><%= player.points %></td>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Anwser</th>
+        <th scope="col">Points</th>
       </tr>
-    <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+      <% @players.each_with_index do |player, i| %>
+        <tr class="score">
+          <th scope="row"><%= i + 1 %></th>
+          <td><%= player.name %></td>
+          <td><%= player.answer(@question).upcase %></td>
+          <td><%= player.points %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
 
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <div class="btn-group btn-group-lg" role="group" aria-label="Basic example" style="margin: 0 auto;">
+          <% if @rank != 0 %>
+            <%= link_to "/reset", {:controller => :welcome, :action => 'reset', method: :post, class: "btn btn-secondary"} do %>
+              <button type="button" class="btn btn-secondary">RESET</button>
+            <% end %>
+          <% end %>
+          <button type="button" class="btn btn-secondary" disabled></button>
+          <% if @rank != 0 %>
+            <%= link_to "/next", {:controller => :welcome, :action => 'next', method: :post, class: "btn btn-secondary"} do %>
+              <button type="button" class="btn btn-secondary">NEXT</button>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
 
-  <% if @rank != 0 %>
-    <%= button_to "RESET", "/reset", {:controller => :welcome, :action => 'reset'} %>
-  <% end %>
-
-  <% if @rank < @max %>
-    <%= button_to "NEXT", "/next", {:controller => :welcome, :action => 'next'} %>
-  <% end %>
+  </div>
 <% end %>
 
 
@@ -146,17 +167,17 @@
             document.getElementById("progressbar").style.width = i + 1 + "%";
         } else {
             clearTimeout(timer);
-            const check = setInterval(function(){
+            const check = setInterval(function () {
                 if (pending) {
                     pending = false;
                     $(() => $.ajax({
                         type: "POST",
-                        url: "/questions/<%= @question.id %>/check/"+selected
+                        url: "/questions/<%= @question.id %>/check/" + selected
                     }));
                 } else {
                     clearTimeout(check)
                 }
-            },1000);
+            }, 1000);
         }
 
     }, 100);
@@ -180,7 +201,7 @@
                 if (data !== <%= @question.rank %>) {
                     clearTimeout(updateRank)
                     if (data !== 0) {
-                        window.location.replace("/questions/"+data);
+                        window.location.replace("/questions/" + data);
                     } else {
                         window.location.replace("/");
                     }

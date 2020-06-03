@@ -13,7 +13,7 @@ class QuestionsController < ApplicationController
   def show
     @rank = State.first.rank
     @max = Question.maximum('rank')
-    @players = Player.all
+    @players = Player.all.order(points: :desc)
   end
 
   # GET /questions/new

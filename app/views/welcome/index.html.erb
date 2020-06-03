@@ -6,13 +6,14 @@
 </div>
 
 <% if current&.is_admin %>
-  <% if @rank != 0 %>
-    <%= button_to "RESET", "/reset", {:controller => :welcome, :action => 'reset'} %>
-  <% end %>
-
-  <% if @rank < @max %>
-    <%= button_to "NEXT", "/next", {:controller => :welcome, :action => 'next'} %>
-  <% end %>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <%= link_to "/next", {:controller => :welcome, :action => 'next', method: :post, class: "btn btn-secondary"} do %>
+        <button type="button" class="btn btn-secondary">START</button>
+      <% end %>
+    </div>
+  </div>
+  </div>
 <% end %>
 
 <script>
@@ -21,7 +22,6 @@
             type: "GET",
             url: "/rank",
             success: function (data) {
-                console.log(data);
                 if (data !== 0) {
                     clearTimeout(updateRank)
                     window.location.replace("/questions/" + data);
