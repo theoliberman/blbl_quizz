@@ -10,8 +10,7 @@ class WelcomeController < ApplicationController
   def next
     state = State.first
     state.update(rank: state.rank + 1)
-    question = Question.find_by(rank: state.rank)
-    redirect_to question
+    redirect_to '/questions/' + state.rank.to_s
   end
 
   def reset

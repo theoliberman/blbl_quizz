@@ -143,7 +143,7 @@
             <% end %>
           <% end %>
           <button type="button" class="btn btn-secondary" disabled></button>
-          <% if @rank != 0 %>
+          <% if @rank < @max %>
             <%= link_to "/next", {:controller => :welcome, :action => 'next', method: :post, class: "btn btn-secondary"} do %>
               <button type="button" class="btn btn-secondary">NEXT</button>
             <% end %>
