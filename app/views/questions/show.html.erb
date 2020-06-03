@@ -147,4 +147,21 @@
             selected = x
         }
     }
+
+    updateRank = setInterval(function () {
+        $(() => $.ajax({
+            type: "GET",
+            url: "/rank",
+            success: function (data) {
+                if (data !== <%= @question.rank + 1 %>) {
+                    clearTimeout(updateRank)
+                    if (data !== 0) {
+                        window.location.replace("/questions/"+data);
+                    } else {
+                        window.location.replace("/");
+                    }
+                }
+            }
+        }));
+    }, 1000);
 </script>

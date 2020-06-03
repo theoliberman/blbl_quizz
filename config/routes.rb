@@ -12,4 +12,8 @@ Rails.application.routes.draw do
   post 'logout', to: 'players#logout'
 
   post 'authenticate', to: 'players#authenticate'
+
+  get 'rank', to: 'welcome#rank'
+  post 'next', to: 'welcome#next'
+  post 'reset', to: 'welcome#reset'
 end

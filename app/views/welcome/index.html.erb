@@ -1,1 +1,20 @@
-<h1>Welcome</h1>
+<h1>Bienvenue <%= current&.name %></h1>
+
+<script>
+    updateRank = setInterval(function () {
+        $(() => $.ajax({
+            type: "GET",
+            url: "/rank",
+            success: function (data) {
+                if (data !== <%= @rank %>) {
+                    clearTimeout(updateRank)
+                    if (data !== 0) {
+                        window.location.replace("/questions/" + data);
+                    } else {
+                        window.location.replace("/");
+                    }
+                }
+            }
+        }));
+    }, 1000);
+</script>

@@ -12,4 +12,8 @@ class ApplicationController < ActionController::Base
   def select_player!
     redirect_to players_path, notice: 'Select a player' if current.nil?
   end
+
+  def admin!
+    redirect_to players_path, notice: 'Not authorized' unless current&.is_admin
+  end
 end

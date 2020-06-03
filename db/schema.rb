@@ -10,27 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_200_602_181_930) do
+ActiveRecord::Schema.define(version: 2020_06_03_005029) do
+
   # These are extensions that must be enabled in order to support this database
-  enable_extension 'plpgsql'
+  enable_extension "plpgsql"
 
-  create_table 'players', force: :cascade do |t|
-    t.string 'name'
-    t.integer 'points', default: 0
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.boolean 'is_admin', default: false
+  create_table "players", force: :cascade do |t|
+    t.string "name"
+    t.integer "points", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "is_admin", default: false
   end
 
-  create_table 'questions', force: :cascade do |t|
-    t.text 'body'
-    t.string 'a'
-    t.string 'b'
-    t.string 'c'
-    t.string 'd'
-    t.integer 'answer'
-    t.integer 'rank'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
+  create_table "questions", force: :cascade do |t|
+    t.text "body"
+    t.string "a"
+    t.string "b"
+    t.string "c"
+    t.string "d"
+    t.integer "answer"
+    t.integer "rank"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
+
+  create_table "states", force: :cascade do |t|
+    t.integer "rank", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
 end
