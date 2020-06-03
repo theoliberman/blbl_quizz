@@ -18,13 +18,12 @@
 //= require bootstrap-sprockets
 //= require_tree .
 
-
+//Haut, haut, bas, bas, gauche, droite, gauche, droite, B, A
+let k = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65],
+    n = 0;
 $(document).keydown(function (e) {
-    //Haut, haut, bas, bas, gauche, droite, gauche, droite, B, A
-    let keys = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65];
-    let n = 0;
-    if (e.keyCode === keys[n++]) {
-        if (n === keys.length) {
+    if (e.keyCode === k[n++]) {
+        if (n === k.length) {
             document.getElementById("spell").style.display = "flex";
             var obj = document.getElementById("points");
             var start = obj !== null ? parseInt(obj.innerText.replace(" points", "")) : 0;
