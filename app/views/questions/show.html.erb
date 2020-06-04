@@ -127,7 +127,7 @@
         <tr class="score">
           <th scope="row"><%= i + 1 %></th>
           <td><%= player.name %></td>
-          <td><%= player.answer(@question).upcase %></td>
+          <td></td>
           <td><%= player.points %></td>
         </tr>
       <% end %>
@@ -170,10 +170,13 @@
             const check = setInterval(function () {
                 if (pending) {
                     pending = false;
-                    $(() => $.ajax({
-                        type: "POST",
-                        url: "/questions/<%= @question.id %>/check/" + selected
-                    }));
+                    setTimeout(function () {
+                        $(() => $.ajax({
+                            type: "POST",
+                            url: "/questions/<%= @question.id %>/check/" + selected,
+                            data: {player: <%= current.id %>}
+                        }));
+                    }, <%= current.is_admin ? 3000 : 0 %>)
                 } else {
                     clearTimeout(check)
                 }

@@ -2,6 +2,6 @@ class Player < ApplicationRecord
   default_scope { where(is_admin: false) }
 
   def answer(question)
-    Answer.where(player: self, question: question).first&.answer || ''
+    Answer.find_by(player: self, question: question)&.answer || ''
   end
 end

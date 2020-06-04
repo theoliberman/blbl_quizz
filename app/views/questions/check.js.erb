@@ -26,11 +26,13 @@ for (let i = 0; i < cards.length; i++) {
 document.getElementById("points").innerText = (<%= current.points %>) + " points"
 
 <% if current&.is_admin %>
-for (let i = 0; i < scores.length; i++) {
-    if ('<%= @question.answer %>'.toUpperCase() === scores.item(i).cells.item(2).innerText) {
-        scores.item(i).classList.add("bg-success");
-    } else {
-        scores.item(i).classList.add("bg-danger");
-    }
-}
+<% @players.each_with_index do |player, i| %>
+<% answer = player.reload.answer(@question) %>
+scores.item(<%= i %>).cells.item(2).innerText = '<%= answer.upcase %>';
+<% if @question.answer == answer %>
+scores.item(<%= i %>).classList.add("bg-success");
+<% else %>
+scores.item(<%= i %>).classList.add("bg-danger");
+<% end %>
+<% end %>
 <% end %>

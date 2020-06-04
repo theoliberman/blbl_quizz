@@ -66,8 +66,9 @@ class QuestionsController < ApplicationController
 
   def check
     @answer = params[:answer] || ''
-    points = current.points
-    current.update(points: points + 10) if @answer == @question.answer
+    @players = Player.all.order(points: :desc).to_a
+    @player = Player.unscoped.find(params[:player])
+    Answer.create(player: @player, question: @question, answer: @answer)
     respond_to do |format|
       format.js {}
     end
