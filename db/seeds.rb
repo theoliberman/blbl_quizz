@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 State.create!
 
-Question.create!(body: 'What is love ?', a: 'baby', b: 'dont', c: 'hurt', d: 'me', answer: 'd', rank: 2)
+Question.create!(body: 'What is love ?', a: 'baby', b: 'dont', c: 'hurt', d: 'me', answer: 'd', rank: 2, points: 2)
 Question.create!(
   body: 'Tic Tac ?',
   a: 'boom',

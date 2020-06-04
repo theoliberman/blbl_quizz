@@ -15,6 +15,10 @@ class WelcomeController < ApplicationController
 
   def reset
     State.first.update(rank: 0)
+    Player.all.each do |player|
+      player.update(points: 0)
+    end
+    Answer.delete_all
     redirect_to root_path
   end
 

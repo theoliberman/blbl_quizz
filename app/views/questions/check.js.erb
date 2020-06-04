@@ -23,16 +23,19 @@ for (let i = 0; i < cards.length; i++) {
 (<%= @question.answer %>).classList.add("bg-success");
 <% end %>
 
-document.getElementById("points").innerText = (<%= current.points %>) + " points"
+points = document.getElementById("points") || null
+if(points) document.getElementById("points").innerText = (<%= current.points %>) + " points"
 
 <% if current&.is_admin %>
 <% @players.each_with_index do |player, i| %>
 <% answer = player.reload.answer(@question) %>
 scores.item(<%= i %>).cells.item(2).innerText = '<%= answer.upcase %>';
+scores.item(<%= i %>).cells.item(3).innerText = '<%= player.points %>';
 <% if @question.answer == answer %>
 scores.item(<%= i %>).classList.add("bg-success");
 <% else %>
 scores.item(<%= i %>).classList.add("bg-danger");
 <% end %>
 <% end %>
+<% @question.update(locked: true) %>
 <% end %>

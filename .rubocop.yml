@@ -1,4 +1,6 @@
 AllCops:
+  Exclude:
+    - 'db/**/*'
   NewCops: enable
 
 Style/FrozenStringLiteralComment:
@@ -10,5 +12,5 @@ Style/Documentation:
 Layout/LineLength:
   Max: 120
 
-Layout/MethodLength:
+Metrics/MethodLength:
   Max: 20

@@ -26,7 +26,7 @@ $(document).keydown(function (e) {
         if (n === k.length) {
             document.getElementById("spell").style.display = "flex";
             var obj = document.getElementById("points");
-            var start = obj !== null ? parseInt(obj.innerText.replace(" points", "")) : 0;
+            var start = parseInt(obj.innerText.replace(" points", "")) || 0;
             animateValue("points", start, 1000, 3000);
             setTimeout(function () {
                     document.getElementById("spell").style.display = "none";
